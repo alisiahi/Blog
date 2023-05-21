@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>ALi's Blog</title>
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css"
+    rel="stylesheet"
+    />
+</head>
+<body>
+
+  <!--Main Navigation-->
+  <header class="">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" target="_blank" href="{% url "blog:post_list" %}">
+          <i class="fas fa-austral-sign" height="16" alt="" loading="lazy"></i>
+        </a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" aria-current="page" href="{% url "blog:home" %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "blog:post_list" %}">Latest posts</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav d-flex flex-row">
+            <!-- Icons -->
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://www.linkedin.com/in/ali--siahi/" rel="nofollow" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://alisiahi.github.io/" rel="nofollow" target="_blank">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://github.com/alisiahi" rel="nofollow" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+  </header>
+  <!--Main Navigation-->  
+  <!-- Section: Intro -->
+  
+  <section class="mb-10">
+
+    <style>
+      #intro-upper {
+        height: 500px;
+        background-color: hsl(0, 0%, 94%);
+      }
+
+      @media (max-width: 767.98px) {
+        #intro-upper {
+          height: 500px;
+        }
+      }
+
+      #intro-lower {
+        margin-top: -240px;
+      }
+
+      @media (max-width: 767.98px) {
+        #intro-lower {
+          margin-top: -270px;
+        }
+      }
+    </style>
+
+    <div id="intro-upper" class="pb-5">
+
+      <div class="container pt-4">
+        <h1 class="display-4 pt-5 fw-bold ls-tight text-primary">ALi's BLOG</h1>
+      </div>
+    </div>
+
+    <div id="intro-lower">
+
+      <div class="container">
+        <div class="row g-0 align-items-center">
+          <div class="col-xl-7 mb-4 mb-xl-0">
+            <img src="{{ featured_post.cover.url}}" alt="{{ featured_post.title }}" class="w-100 rounded-6" />
+          </div>
+          <div class="col-xl-5 ms-0 ms-xl-n5">
+            <div class="card rounded-6 shadow-5">
+              <div class="card-body px-4 p-4 p-md-5 p-lg-4 p-xl-5">
+                <h4 class="mb-4">{{featured_post.title }}</h4>
+                <p class="text-muted mb-4">{{ featured_post.body|truncatewords:30|linebreaks }}</p>
+                <a type="button" class="btn btn-primary btn-rounded" href="{{ featured_post.get_absolute_url }}">Read More <i
+                    class="fas fa-angle-right ms-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+  <!-- Section: Intro -->
+  
+
+  <!--Main layout-->
+  <main>
+    <div class="container">
+
+      <!-- Section: Posts -->
+      <section class="text-center mb-10">
+
+        <h3 class="fw-bold mb-7 text-center">Latest posts</h3>
+
+        <div class="row gx-lg-5">
+          {% for post in posts %}
+          <!-- Column -->
+          <div class="col-lg-4 mb-7">
+
+            <div class="card rounded-6 h-100">
+              <div class="bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6 mt-n3"
+                data-mdb-ripple-color="light">
+                <img src="{{ post.cover.url}}" alt="{{ post.title }}" class="w-100">
+
+                <a href="{{ post.get_absolute_url }}">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="text-muted">{{ post.body|truncatewords:30|linebreaks }}</p>
+              </div>
+            </div>
+
+          </div>
+          <!-- Column -->
+          {% endfor %}
+        </div>
+
+        <a class="btn btn-secondary btn-rounded" href="{% url "blog:post_list" %}" role="button">See more posts</a>
+
+      </section>
+      <!-- Section: Posts -->
+
+    </div>
+  </main>
+  <!--Main layout-->
+  
+
+  <!--Footer-->
+  <!--Footer-->
+  <footer class="bg-light text-lg-start">
+    <hr class="m-0" />
+
+    <div class="text-center py-4 align-items-center">
+      <p>Follow ALi on social media</p>
+      <a href="https://www.linkedin.com/in/ali--siahi/" class="btn btn-primary m-1" role="button" rel="nofollow">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://alisiahi.github.io/" class="btn btn-primary m-1" role="button" rel="nofollow">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://github.com/alisiahi" class="btn btn-primary m-1" role="button" rel="nofollow">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2023 Copyright:
+      <a class="text-dark" href="#">By ALi Siahi</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!--Footer-->
+  <!--Footer-->
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
+</body>
+</html>

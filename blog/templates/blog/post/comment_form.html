@@ -1,0 +1,14 @@
+{% load crispy_forms_tags %}
+<form action="{% url "blog:post_comment" post.id %}" method="post" class="card p-3 mt-5">
+        
+    <p class="text-center"><strong>Leave a reply</strong></p>
+    {{ form|crispy }}
+    {% csrf_token %}    
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Publish</button>
+</form>
+    
+
+
+
+

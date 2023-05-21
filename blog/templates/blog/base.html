@@ -1,0 +1,170 @@
+{% load blog_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>ALi's Blog</title>
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css"
+    rel="stylesheet"
+    />
+</head>
+<body>
+  <!--Main Navigation-->
+  <header class="mb-10">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" target="_blank" href="{% url "blog:post_list" %}">
+          <i class="fas fa-austral-sign" height="16" alt="" loading="lazy"></i>
+        </a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" aria-current="page" href="{% url "blog:home" %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "blog:post_list" %}">Latest posts</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav d-flex flex-row">
+            <!-- Icons -->
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://www.linkedin.com/in/ali--siahi/" rel="nofollow" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://alisiahi.github.io/" rel="nofollow" target="_blank">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://github.com/alisiahi" rel="nofollow" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="my-5">
+    <div class="container">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-md-9 mb-4">
+          <!--Section: Content-->            
+          <section>
+            {% block content %}
+            {% endblock content %}
+          </section>
+          <!--Section: Content-->
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-3 mb-4">
+          <!--Section: Sidebar-->
+          <section class="sticky-top" style="top: 100px;">
+            <!--Section: Categories-->
+            <section class="text-center mb-4">
+              <div class="card bg-White mb-3">
+                <div class="card-header">Categories</div>
+                <div class="card-body">
+                  <p class="card-text">
+                    <p class="tags">
+                      {% for tag in tagzzz %}
+                        <a href="{% url "blog:post_list_by_tag" tag.slug %}" class="badge rounded-pill bg-secondary">{{ tag.name }}</a>
+                        {% if not forloop.last %} {% endif %}
+                      {% endfor %}
+                    </p>                  
+                  </p>
+                </div>
+              </div>
+           </section>
+            <!--Section: Categories-->
+            <!-- Add Something Here -->
+            <section class="text-center mb-4">
+              <div class="card bg-White mb-3">
+                <div class="card-header">Ali's Blog</div>
+                <div class="card-body">
+                  <p class="card-text">
+                    <p class="tags">
+                      This is my blog. <br>
+                      I've written {% total_posts %} posts so far.
+                    </p>             
+
+                </div>
+              </div>
+           </section>
+            <!-- Add Something Here -->
+          </section>
+          <!--Section: Sidebar-->
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+
+      {% block pagination %}
+      {% endblock pagination %}
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="bg-light text-lg-start">
+    <hr class="m-0" />
+
+    <div class="text-center py-4 align-items-center">
+      <p>Follow ALi on social media</p>
+      <a href="https://www.linkedin.com/in/ali--siahi/" class="btn btn-primary m-1" role="button" rel="nofollow">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://alisiahi.github.io/" class="btn btn-primary m-1" role="button" rel="nofollow">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://github.com/alisiahi" class="btn btn-primary m-1" role="button" rel="nofollow">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2023 Copyright:
+      <a class="text-dark" href="#">By ALi Siahi</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!--Footer-->
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
+</body>
+</html>
