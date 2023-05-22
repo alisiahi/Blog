@@ -3,4 +3,6 @@
 <p>The blog features a clean and minimalist design, with a focus on readability and usability. It is fully responsive, meaning that it looks great on all devices, from desktops to mobile phones. The blog also includes a commenting system, which allows readers to leave their thoughts and feedback on my posts.</p>
 <p>Readers can also share blog post by emailing them.</P>
 <p>If you have any feedback or suggestions, please feel free contact me directly.</p>
+<br>
+<a href="https://django-blog-application.iran.liara.run/">Link to the Blog</a>
 
